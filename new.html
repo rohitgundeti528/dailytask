@@ -47,8 +47,7 @@
         <p class="para">Double-click an item to mark it complete</p>
         <input type="text" name="task" id="task">
         <button onclick="addTask()" style="background-color: rgb(97, 145, 222);border: 3px solid rgb(17, 93, 118);">ADD</button>
-        <div class="taskblock">
-            <p id="tasklist"></p>
+        <div id="taskblock">
         </div>
         <button style="background-color: rgb(97, 145, 222); border: 3px solid rgb(17, 93, 118);">Clear Completed</button>
         <button style="background-color: rgb(174, 112, 111);border: 3px solid rgb(105, 62, 31);">Empty List</button>
@@ -56,17 +55,17 @@
     </div>
     <script>
         function addTask(){
-            var pre = document.getElementById("tasklist");
-            var pretasks = pre.textContent;
             var newtask = document.getElementById("task");
-            var newtaskvalue = newtask.value;
+            var parent = document.getElementById("taskblock");
+            var p_ele = document.createElement("p");
+            let count = document.getElementById("taskblock").childElementCount + 1;
 
-            if(!pretasks){
-                document.getElementById("tasklist").innerHTML = newtask.value+"\n";
-            }
-            else{
-                document.getElementById("tasklist").innerHTML = pretasks +"\n"+ newtask.value;
-            }
+            let text = newtask.value
+            let newp;
+            
+            newp = document.createTextNode(count+". "+ text);
+            p_ele.appendChild(newp);
+            parent.appendChild(p_ele);
         }
     </script>
 </body>
